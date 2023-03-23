@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ConfictionaryApp.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.FullName)
+                </td>
+                <td>
+                    <a class="btn btn-light" asp-action="Edit" asp-route-id="@item.OrderID">Edit</a> |
+                    <a class="btn btn-light" asp-action="Details" asp-route-id="@item.OrderID">Details</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.OrderID">Delete</a> |
+                    <a class="btn btn-outline-primary" asp-controller="OrderDetails" asp-action="Index" asp-route-id="@item.OrderID">OrderDetails</a> |
+                    <a class="btn btn-outline-success" asp-action="ShReport" asp-route-id="@item.OrderID">Invoice</a> |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
